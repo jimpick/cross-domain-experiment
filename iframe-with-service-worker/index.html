@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>IFrame with Service Worker Gateway</title>
+  </head>
+  <body>
+    <h1>IFrame with Service Worker Gateway</h1>
+    <h2>Hex</h2>
+    6kgvhnw3nw2q.seahex.org
+    <h2>Files</h2>
+    <div>
+      test1.txt:
+      <pre style="border: 1px solid red; padding: 1em;" id="test1_txt">
+      </pre>
+    </div>
+    <script>
+      async function run() {
+        const resp = await fetch('test1.txt');
+        const text = await resp.text();
+        console.log('Hi Jim', text);
+        window.test1_txt.innerText = text;
+      }
+      run();
+    </script>
+</html>
+
