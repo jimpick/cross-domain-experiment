@@ -6,8 +6,38 @@
     <h1>hex-1</h1>
 
     <h2>IFrame</h2>
-    <iframe src="https://6kgvhnw3nw2q.seahex.org/" style="width:100%; height: 40vh">
+    <!-- <iframe src="https://6kgvhnw3nw2q.seahex.org/" style="width:100%; height: 40vh"> -->
+    <iframe src="http://127.0.0.1:8082/" style="width:100%; height: 50vh">
     </iframe>
+
+    <h2>Channel messaging demo</h1>
+    <p class="output">Index.html para (I will be overwritten)</p>
+
+    <script>
+      // https://github.com/mdn/dom-examples/blob/main/channel-messaging-basic/index.html
+      const channel = new MessageChannel();
+      const output = document.querySelector(".output");
+      const iframe = document.querySelector("iframe");
+
+      // Wait for the iframe to load
+      iframe.addEventListener("load", onLoad);
+
+      function onLoad() {
+        // Listen for messages on port1
+        channel.port1.onmessage = onMessage;
+        // Transfer port2 to the iframe
+        iframe.contentWindow.postMessage(
+          "A message from the index.html page!",
+          "*",
+          [channel.port2]
+        );
+      }
+
+      // Handle messages received on port1
+      function onMessage(e) {
+        output.innerText = e.data;
+      }
+    </script>
   </body>
 </html>
 
