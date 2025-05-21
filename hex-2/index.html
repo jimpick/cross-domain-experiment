@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>hex-2</title>
+  </head>
+  <body>
+    <h1>hex-2</h1>
+
+    Retrieves contents of a file via cross origin MessageChannel from IFrame, which
+    is using the IPFS Service Worker Gateway. This version of the demo installs a
+    Service Worker.
+
+    <h2>Hex</h2>
+    Deploy to: TBD
+
+    <h2>IFrame</h2>
+    <iframe src="https://6kgvhnw3nw2q.seahex.org/" style="width:100%; height: 50vh">
+      <!-- <iframe src="http://127.0.0.1:8082/" style="width:100%; height: 50vh"> -->
+    </iframe>
+
+    <h2>Channel messaging demo - Message from IFrame</h1>
+    <p class="output">Index.html para (I will be overwritten)</p>
+
+    <h2>Fetch on-demand via Service Worker</h2>
+
+    <button>Fetch test1.txt</button>
+
+    File contents: <span id="file_contents"></span>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
+
