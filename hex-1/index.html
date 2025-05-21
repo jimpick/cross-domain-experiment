@@ -10,7 +10,7 @@
     <iframe src="http://127.0.0.1:8082/" style="width:100%; height: 50vh">
     </iframe>
 
-    <h2>Channel messaging demo</h1>
+    <h2>Channel messaging demo - Message from IFrame</h1>
     <p class="output">Index.html para (I will be overwritten)</p>
 
     <script>
@@ -27,7 +27,7 @@
         channel.port1.onmessage = onMessage;
         // Transfer port2 to the iframe
         iframe.contentWindow.postMessage(
-          "A message from the index.html page!",
+          "test1.txt",
           "*",
           [channel.port2]
         );
