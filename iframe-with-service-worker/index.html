@@ -5,14 +5,35 @@
   <body>
     <h1>IFrame with Service Worker Gateway</h1>
     <h2>Hex</h2>
-    6kgvhnw3nw2q.seahex.org
+    Deploy to: 6kgvhnw3nw2q.seahex.org
     <h2>Files</h2>
     <div>
       test1.txt:
       <pre style="border: 1px solid red; padding: 1em;" id="test1_txt">
       </pre>
     </div>
+    <h2>Channel Messaging Demo - Message from Parent Frame</h2>
+    <p class="output">page2.html (iframe body)</p>
     <script>
+      // https://github.com/mdn/dom-examples/blob/main/channel-messaging-basic/page2.html
+      const output = document.querySelector(".output");
+
+      window.addEventListener("message", onMessage);
+
+      async function onMessage(e) {
+        if (!e.ports.length) return;
+
+        output.innerText = e.data;
+
+        // Fetch file
+        const filename = e.data;
+        const resp = await fetch(filename);
+        const text = await resp.text();
+        console.log('Fetched data', filename, text);
+        // Use the transferred port to post a message to the main frame
+        e.ports[0].postMessage(text);
+      }
+
       async function run() {
         const resp = await fetch('test1.txt');
         const text = await resp.text();
